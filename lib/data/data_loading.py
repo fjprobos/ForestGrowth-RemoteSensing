@@ -3,6 +3,7 @@ from sklearn.datasets import load_files
 from keras.utils import np_utils
 import numpy as np
 from glob import glob
+import ee
 
 
 def load_images(main_folder_path):
@@ -60,3 +61,39 @@ def load_dataset(path):
     print(data['target'])
     print(data['target_names'])
     return files, targets, target_names_sklearn
+
+
+def get_earth_engine_green_cover(poligons):
+    """
+    Given a set of poligons, we use earth engine to massively get the green cover percentage inside each
+    poligon over earth. This will be used to classy images in their respective batch labels.
+    :param poligons:
+    :return:
+    """
+
+    ee.Initialize()
+    #  Authenticate to Earth Engine the same way you did to the Colab notebook.
+    #  Specifically, run the code to display a link to a permissions page.
+    #  This gives you access to your Earth Engine account.
+    #  Copy the code from the Earth Engine permissions page back into the notebook and press return to complete
+    #  the process.
+    #  !earthengine authenticate  # Prefereabily to be runned directly in the console
+
+    #  Define a region in the angol region
+    angol_geometry = ee.Geometry.Rectangle(-73.016, 37.95, -72.66, -38.15)
+
+    #  Load input NAIP imagery and build a mosaic.
+    naipCollection = ee.ImageCollection('UMD/hansen/global_forest_change_2015').filterBounds(angol_geometry)
+    naip = naipCollection.mosaic()
+
+    #  Compute NDVI from the NAIP imagery.
+    naipNDVI = naip.normalizedDifference(['N', 'R']);
+
+    #  Compute standard deviation (SD) as texture of the NDVI.
+    texture = naipNDVI.reduceNeighborhood(reducer=ee.Reducer.stdDev(), kernel=ee.Kernel.circle(7))
+
+    gfc2014 = ee.Image('UMD/hansen/global_forest_change_2015')
+    Image = gfc2014.select(['treecover2000'])
+
+    stats = Image.reduceRegion(reducer=ee.Reducer.mean(), geometry=angol_geometry, scale=30, bestEffort=True)
+    print(stats.getInfo())
