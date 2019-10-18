@@ -4,6 +4,8 @@ from keras.utils import np_utils
 import numpy as np
 from glob import glob
 import ee
+from pykml import parser
+from os import path
 
 
 def load_images(main_folder_path):
@@ -71,29 +73,51 @@ def get_earth_engine_green_cover(poligons):
     :return:
     """
 
+    #  If you call ee.Initialize() without any arguments (as the preceding command does), the API tries
+    #  to read credentials from a file located in a subfolder of your home directory.
+    #  The location of the credentials file depends on your operating system. On Windows, the location is
+    # %UserProfile%\.config\earthengine\credentials
+
     ee.Initialize()
-    #  Authenticate to Earth Engine the same way you did to the Colab notebook.
-    #  Specifically, run the code to display a link to a permissions page.
-    #  This gives you access to your Earth Engine account.
-    #  Copy the code from the Earth Engine permissions page back into the notebook and press return to complete
-    #  the process.
-    #  !earthengine authenticate  # Prefereabily to be runned directly in the console
+
+    # After authentication/initialization we iterate over the poligos handled with a pandas data_frame
+    # and start getting the tree_cover from the "Hansen Global Forest Change" Earth Engine Satellite collection
 
     #  Define a region in the angol region
     angol_geometry = ee.Geometry.Rectangle(-73.016, 37.95, -72.66, -38.15)
-
-    #  Load input NAIP imagery and build a mosaic.
-    naipCollection = ee.ImageCollection('UMD/hansen/global_forest_change_2015').filterBounds(angol_geometry)
-    naip = naipCollection.mosaic()
-
-    #  Compute NDVI from the NAIP imagery.
-    naipNDVI = naip.normalizedDifference(['N', 'R']);
-
-    #  Compute standard deviation (SD) as texture of the NDVI.
-    texture = naipNDVI.reduceNeighborhood(reducer=ee.Reducer.stdDev(), kernel=ee.Kernel.circle(7))
 
     gfc2014 = ee.Image('UMD/hansen/global_forest_change_2015')
     Image = gfc2014.select(['treecover2000'])
 
     stats = Image.reduceRegion(reducer=ee.Reducer.mean(), geometry=angol_geometry, scale=30, bestEffort=True)
     print(stats.getInfo())
+
+
+def read_poligons(kml_path):
+    """
+    Read kml file with the poligon information and return a df with that info
+
+    Example:
+        kml_file = path.join('list.kml')
+
+    with open(kml_file) as f:
+        doc = parser.parse(f).getroot()
+
+    for e in doc.Document.Folder.Placemark:
+        coor = e.Point.coordinates.text.split(',')
+
+    :param path:
+    :return:
+    """
+    # TODO to be implemented
+    kml_file = path.join(kml_path)  # 'forest_growth.kml'
+
+    with open(kml_file) as f:
+        doc = parser.parse(f).getroot()
+
+    for e in doc.Document.Folder.Placemark:
+        name = e.name
+        coordinates = e.Polygon.outerBoundaryIs.LinearRing.coordinates.text.split(',')
+
+        print(name)
+        print(coordinates)

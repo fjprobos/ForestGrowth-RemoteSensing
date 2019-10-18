@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom">
+<Document>
+	<name>forest_growth.kml</name>
+	<Style id="sn_ylw-pushpin">
+		<IconStyle>
+			<scale>1.1</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+		<BalloonStyle>
+		</BalloonStyle>
+		<PolyStyle>
+			<fill>0</fill>
+		</PolyStyle>
+	</Style>
+	<StyleMap id="msn_ylw-pushpin">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#sn_ylw-pushpin</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#sh_ylw-pushpin</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="sh_ylw-pushpin">
+		<IconStyle>
+			<scale>1.3</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+		<BalloonStyle>
+		</BalloonStyle>
+		<PolyStyle>
+			<fill>0</fill>
+		</PolyStyle>
+	</Style>
+	<Folder>
+		<name>forest_growth</name>
+		<Placemark>
+			<name>pol_1</name>
+			<LookAt>
+				<longitude>-72.54409059280185</longitude>
+				<latitude>-38.2159212475406</latitude>
+				<altitude>0</altitude>
+				<heading>-2.096421994668845</heading>
+				<tilt>0</tilt>
+				<range>69015.2204216141</range>
+				<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+			</LookAt>
+			<styleUrl>#msn_ylw-pushpin</styleUrl>
+			<Polygon>
+				<tessellate>1</tessellate>
+				<outerBoundaryIs>
+					<LinearRing>
+						<coordinates>
+							-72.81247030403371,-38.07495405448112,0 -72.81065912678375,-38.31106618072071,0 -72.3608581113093,-38.29820128631363,0 -72.38908571225782,-38.05977632361294,0 -72.81247030403371,-38.07495405448112,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>pol_2</name>
+			<styleUrl>#msn_ylw-pushpin</styleUrl>
+			<Polygon>
+				<tessellate>1</tessellate>
+				<outerBoundaryIs>
+					<LinearRing>
+						<coordinates>
+							-72.17198637498254,-37.88056144123502,0 -72.15802375660613,-38.03005872238546,0 -71.92393667074434,-38.01751772781678,0 -71.93045533193357,-37.87248993137299,0 -72.17198637498254,-37.88056144123502,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>pol_3</name>
+			<styleUrl>#msn_ylw-pushpin</styleUrl>
+			<Polygon>
+				<tessellate>1</tessellate>
+				<outerBoundaryIs>
+					<LinearRing>
+						<coordinates>
+							-72.42421379485747,-38.33576435911031,0 -72.41996290412331,-38.49609476551647,0 -72.13264369815076,-38.50204697802472,0 -72.14063991360639,-38.33403684166948,0 -72.42421379485747,-38.33576435911031,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>pol_4</name>
+			<styleUrl>#msn_ylw-pushpin</styleUrl>
+			<Polygon>
+				<tessellate>1</tessellate>
+				<outerBoundaryIs>
+					<LinearRing>
+						<coordinates>
+							-73.59536463581199,-38.24043544694122,0 -73.33361147431903,-38.24141289975341,0 -73.33134514443634,-38.0985989727648,0 -73.60354463794452,-38.10582371666789,0 -73.59536463581199,-38.24043544694122,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>pol_5</name>
+			<styleUrl>#msn_ylw-pushpin</styleUrl>
+			<Polygon>
+				<tessellate>1</tessellate>
+				<outerBoundaryIs>
+					<LinearRing>
+						<coordinates>
+							-73.2466185499423,-37.84598266290381,0 -72.96450279174984,-37.84868359557015,0 -72.96657297973192,-37.66688185455173,0 -73.24580457376658,-37.66513322668109,0 -73.2466185499423,-37.84598266290381,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>pol_6</name>
+			<styleUrl>#msn_ylw-pushpin</styleUrl>
+			<Polygon>
+				<tessellate>1</tessellate>
+				<outerBoundaryIs>
+					<LinearRing>
+						<coordinates>
+							-71.65175718303865,-37.21936834786531,0 -70.80047334495782,-37.23338182789831,0 -70.82885425546701,-36.70095719060579,0 -71.65981570423455,-36.69911442454367,0 -71.65175718303865,-37.21936834786531,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>pol_7</name>
+			<styleUrl>#msn_ylw-pushpin</styleUrl>
+			<Polygon>
+				<tessellate>1</tessellate>
+				<outerBoundaryIs>
+					<LinearRing>
+						<coordinates>
+							-73.61360096131749,-40.07657357034426,0 -73.65524778427255,-40.21213891681459,0 -73.40429796045996,-40.26731850245966,0 -73.36440179477718,-40.1224162515837,0 -73.61360096131749,-40.07657357034426,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>pol_8</name>
+			<styleUrl>#msn_ylw-pushpin</styleUrl>
+			<Polygon>
+				<tessellate>1</tessellate>
+				<outerBoundaryIs>
+					<LinearRing>
+						<coordinates>
+							-72.59450748873202,-41.23697747915697,0 -72.60930882006946,-41.28870967720409,0 -72.51434476263185,-41.30746622988747,0 -72.49796208952137,-41.25313858395433,0 -72.59450748873202,-41.23697747915697,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>pol_9</name>
+			<styleUrl>#msn_ylw-pushpin</styleUrl>
+			<Polygon>
+				<tessellate>1</tessellate>
+				<outerBoundaryIs>
+					<LinearRing>
+						<coordinates>
+							-71.72630085279079,-34.35244350422178,0 -71.74717042906279,-34.44688738097442,0 -71.55507845297466,-34.48206844993556,0 -71.53539697839695,-34.38404592052691,0 -71.72630085279079,-34.35244350422178,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+		<Placemark>
+			<name>pol_10</name>
+			<styleUrl>#msn_ylw-pushpin</styleUrl>
+			<Polygon>
+				<tessellate>1</tessellate>
+				<outerBoundaryIs>
+					<LinearRing>
+						<coordinates>
+							-71.50423938547583,-32.94163160818678,0 -71.52040538091026,-33.00717656426458,0 -71.41061623297418,-33.02847319296259,0 -71.39288683622743,-32.962631109372,0 -71.50423938547583,-32.94163160818678,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+	</Folder>
+</Document>
+</kml>
