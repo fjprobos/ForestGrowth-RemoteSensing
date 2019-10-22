@@ -83,14 +83,24 @@ def get_earth_engine_green_cover(poligons):
     # After authentication/initialization we iterate over the poligos handled with a pandas data_frame
     # and start getting the tree_cover from the "Hansen Global Forest Change" Earth Engine Satellite collection
 
-    #  Define a region in the angol region
-    angol_geometry = ee.Geometry.Rectangle(-73.016, 37.95, -72.66, -38.15)
+    green_cover_output = []
 
-    gfc2014 = ee.Image('UMD/hansen/global_forest_change_2015')
-    Image = gfc2014.select(['treecover2000'])
+    for p in poligons:
+        name = p[0]
+        coordinates = p[1]
 
-    stats = Image.reduceRegion(reducer=ee.Reducer.mean(), geometry=angol_geometry, scale=30, bestEffort=True)
-    print(stats.getInfo())
+        # Define a region in the angol region
+
+        geometry = ee.Geometry.Rectangle(coordinates[0], coordinates[1], coordinates[-2], coordinates[-1])
+
+        gfc2014 = ee.Image('UMD/hansen/global_forest_change_2015')
+        Image = gfc2014.select(['treecover2000'])
+
+        stats = Image.reduceRegion(reducer=ee.Reducer.mean(), geometry=geometry, scale=30, bestEffort=True)
+        green_cover = stats.getInfo()
+        print(green_cover)
+
+        green_cover_output.append(name, green_cover)
 
 
 def read_poligons(kml_path):
@@ -109,15 +119,23 @@ def read_poligons(kml_path):
     :param path:
     :return:
     """
-    # TODO to be implemented
     kml_file = path.join(kml_path)  # 'forest_growth.kml'
 
     with open(kml_file) as f:
         doc = parser.parse(f).getroot()
 
+    poligons_list = []
+
     for e in doc.Document.Folder.Placemark:
         name = e.name
         coordinates = e.Polygon.outerBoundaryIs.LinearRing.coordinates.text.split(',')
-
-        print(name)
+        clean_coordinates = []
         print(coordinates)
+        # We clean up the coordinates from not numeric data:
+        for c in range(8):
+            coordinates[c] = coordinates[c].replace('\n\t\t\t\t\t\t\t', '')
+            coordinates[c] = coordinates[c].replace('0 ', '')
+            clean_coordinates.append(coordinates[c])
+        poligons_list.append(name, clean_coordinates)
+
+    return poligons_list
