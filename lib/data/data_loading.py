@@ -100,7 +100,11 @@ def get_earth_engine_green_cover(poligons):
         green_cover = stats.getInfo()
         print(green_cover)
 
-        green_cover_output.append(name, green_cover)
+        output_tuple = name, green_cover
+
+        green_cover_output.append(output_tuple)
+
+    return green_cover_output
 
 
 def read_poligons(kml_path):
@@ -130,12 +134,18 @@ def read_poligons(kml_path):
         name = e.name
         coordinates = e.Polygon.outerBoundaryIs.LinearRing.coordinates.text.split(',')
         clean_coordinates = []
-        print(coordinates)
+
         # We clean up the coordinates from not numeric data:
         for c in range(8):
             coordinates[c] = coordinates[c].replace('\n\t\t\t\t\t\t\t', '')
             coordinates[c] = coordinates[c].replace('0 ', '')
             clean_coordinates.append(coordinates[c])
-        poligons_list.append(name, clean_coordinates)
+
+        for e in range(len(clean_coordinates)):
+            clean_coordinates[e] = float(clean_coordinates[e])
+
+        out_tuple = name, clean_coordinates
+        poligons_list.append(out_tuple)
+        print out_tuple
 
     return poligons_list
