@@ -57,7 +57,7 @@ def load_images(main_folder_path):
 def load_dataset(path):
     data = load_files(path)
     files = np.array(data['filenames'])
-    targets = np_utils.to_categorical(np.array(data['target']), 9)
+    targets = np_utils.to_categorical(np.array(data['target']), 20)
     target_names_sklearn = data['target_names']
     print(target_names_sklearn)
     print(data['target'])
