@@ -22,8 +22,9 @@ def load_images(main_folder_path):
     train_files, train_targets, train_sklearn_target_names = load_dataset(main_folder_path+'/train')
     valid_files, valid_targets, valid_sklearn_target_names = load_dataset(main_folder_path+'/valid')
     test_files, test_targets, test_sklearn_target_names = load_dataset(main_folder_path+'/test')
+    benchmark_files, benchmark_targets, benchmark_sklearn_target_names = load_dataset(main_folder_path + '/benchmark')
 
-    # load list of dog names
+    # load list of batch names
     target_names = [item[20:-1] for item in sorted(glob(main_folder_path+"/train/*/"))]
 
     output_dict['train_files'] = train_files
@@ -32,6 +33,8 @@ def load_images(main_folder_path):
     output_dict['valid_targets'] = valid_targets
     output_dict['test_files'] = test_files
     output_dict['test_targets'] = test_targets
+    output_dict['benchmark_files'] = benchmark_files
+    output_dict['benchmark_targets'] = benchmark_targets
 
     # output_dict will also contain the target names of the categories
     output_dict['target_names'] = target_names
@@ -43,12 +46,6 @@ def load_images(main_folder_path):
     for target in train_targets:
         print(target)
 
-    # print statistics about the dataset
-    print('There are %d total dog categories.' % len(target_names))
-    print('There are %s total dog images.\n' % len(np.hstack([train_files, valid_files, test_files])))
-    print('There are %d training dog images.' % len(train_files))
-    print('There are %d validation dog images.' % len(valid_files))
-    print('There are %d test dog images.' % len(test_files))
 
     return output_dict
 
